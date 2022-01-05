@@ -1,0 +1,63 @@
+<div class="sect">
+    <h1>All Products</h1> 
+    <mat-card>
+        <mat-card-header>Create Product</mat-card-header>
+        <mat-card-content>
+            <div>
+                <mat-form-field>
+                    <mat-label>Enter type</mat-label>
+                    <input
+                        matInput type="string"
+                        [(ngModel)] = type
+                        required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Enter brand</mat-label>
+                    <input
+                        matInput type="string"
+                        [(ngModel)] = brand
+                        required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Enter spec</mat-label>
+                    <input
+                        matInput type="string"
+                        [(ngModel)] = spec
+                        required>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Enter quantity</mat-label>
+                    <input
+                        matInput type="number"
+                        [(ngModel)] = quantity
+                        required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Enter unit cost</mat-label>
+                    <input
+                        matInput type="number"
+                        [(ngModel)] = unit_cost
+                        required>
+                </mat-form-field><br>
+                <button mat-raised-button (click)="onAdd()" color="primary">Add</button>
+            </div>
+        </mat-card-content>        
+    </mat-card>  
+    <mat-card>
+        <mat-card-header>List of Products</mat-card-header>
+        <mat-card-content>
+            <mat-accordion multi="true">
+                <mat-expansion-panel *ngFor="let pcPart of pcParts">
+                    <mat-expansion-panel-header>
+                        {{pcPart.brand}} {{pcPart.type}}
+                    </mat-expansion-panel-header>
+                     Type: {{pcPart.type}} <br>
+                     Brand: {{pcPart.brand}} <br>
+                     Spec: {{pcPart.spec}} <br>
+                     Quantity: {{pcPart.quantity}} <br>
+                     Unit Cost: {{pcPart.unit_cost}} <br>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card> 
+</div>
