@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PcPart } from '../pc-part.model';
+import { PcPartsService } from '../pc-parts.service';
 
 @Component({
   selector: 'app-products',
@@ -8,27 +10,30 @@ import { PcPart } from '../pc-part.model';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public pcPartsService: PcPartsService) { }
 
   type: string = "Motherboard";
   brand: string = "ASUS";
   spec: string = "Supports i3, Max 32 GB Ram";
   quantity: number = 4;
   unit_cost: number = 300;
+  private pcPartsSub: Subscription;
 
-
-  pcParts: PcPart[] = [
-    {type: "RAM", brand: "Kingston", spec: "4 GB", quantity: 3, unit_cost: 300},
-    {type: "CPU", brand: "Intel", spec: "i5 core", quantity: 1, unit_cost: 500}
-  ];
+  pcParts: PcPart[] = [];
 
   onAdd(){
-    let tmpPart: PcPart = {type:this.type, brand: this.brand, spec: this.spec, quantity: this.quantity, unit_cost: this.unit_cost};
-    this.pcParts.push(tmpPart);
+    this.pcPartsService.addPcPart(this.type, this.brand, this.spec, this.quantity, this.unit_cost);
   }
 
   ngOnInit(): void {
+    this.pcPartsSub = this.pcPartsService.getPcPartsUpdateListener()
+    .subscribe((pcParts: PcPart[])=>{
+      this.pcParts = pcParts;
+    });
+  }
 
+  ngOnDestroy(){
+    this.pcPartsSub.unsubscribe();
   }
 
 }

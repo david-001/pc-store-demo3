@@ -7,6 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
