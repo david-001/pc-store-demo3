@@ -8,4 +8,4 @@ const pcPartSchema = mongoose.Schema({
     unit_cost: {type: Number, required: true}
 });
 
-module.exports = mongoose.model("PcPart",pcPartSchema);
+module.exports = mongoose.model("PcPart",pcPartSchema); //pcparts - collection name

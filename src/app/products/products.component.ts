@@ -25,10 +25,17 @@ export class ProductsComponent implements OnInit {
     this.pcPartsService.addPcPart(this.type, this.brand, this.spec, this.quantity, this.unit_cost);
   }
 
+  onDelete(pcPartId: string){
+    this.pcPartsService.deletePcPart(pcPartId);
+  }
+
+  // Initialization
   ngOnInit(): void {
+    this.pcPartsService.getAllPcParts();    
     this.pcPartsSub = this.pcPartsService.getPcPartsUpdateListener()
     .subscribe((pcParts: PcPart[])=>{
       this.pcParts = pcParts;
+      // console.log(this.spec);
     });
   }
 
@@ -37,3 +44,4 @@ export class ProductsComponent implements OnInit {
   }
 
 }
+

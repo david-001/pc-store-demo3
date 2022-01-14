@@ -56,6 +56,9 @@
                      Spec: {{pcPart.spec}} <br>
                      Quantity: {{pcPart.quantity}} <br>
                      Unit Cost: {{pcPart.unit_cost}} <br>
+                     <mat-action-row>
+                         <button mat-button color="warn" (click)="onDelete(pcPart._id)">DELETE</button>
+                     </mat-action-row>
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-card-content>

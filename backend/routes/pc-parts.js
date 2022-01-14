@@ -1,8 +1,9 @@
 const express = require("express");
+const pcPart = require("../models/pc-part");
 const PcPart = require("../models/pc-part");
 const router = express.Router();
 
-//POST
+//POST http://localhost:3000/api/pcparts
 router.post("",(req,res,next)=>{
     const pcPart = new PcPart({
         type: req.body.type,
@@ -19,12 +20,31 @@ router.post("",(req,res,next)=>{
     });
 });
 
+// http://localhost:3000/api/pcparts
+router.get("",(req,res,next)=>{
+    PcPart.find().then(documents=>{
+        res.status(201).json({
+            message: "PC parts fetched successfully!",
+            pcParts: documents
+        });
+    });
+});
+
+
+router.delete("/:id",(req,res,next)=>{
+    PcPart.deleteOne({_id:req.params.id}).then(result=>{
+        console.log(result);
+        res.status(201).json({message: "Pc part deleted."});
+    })
+})
+
+
 // router.post("",(req,res,next)=>{
-//     res.status(201).send("Post message successful");
+//     res.status(201).json("Post message successful ");
 // });
 
 // router.get("",(req,res,next)=>{
-//     res.status(201).send("GET message successful");
+//     res.status(201).json("GET message successful");
 // });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 export interface PcPart {
+    _id: string,
     type: string,
     brand: string,
     spec: string,
